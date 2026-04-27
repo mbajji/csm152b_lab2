@@ -1,0 +1,40 @@
+Time resolution is 1 ps
+=== UART loopback testbench ===
+[0 ns] pressing btnL (reset)
+[0 ns] btnR=0 tx_line=1 rx_line=1 led=0x00
+[5000000000 ns] released btnL
+[5300000000 ns] pressing btnR
+[5300000000 ns] btnR=1 tx_line=1 rx_line=1 led=0x00
+[6718315000 ns] btnR=1 tx_line=0 rx_line=0 led=0x00
+[6822475000 ns] btnR=1 tx_line=1 rx_line=1 led=0x00
+[6926635000 ns] btnR=1 tx_line=0 rx_line=0 led=0x00
+[7030795000 ns] btnR=1 tx_line=1 rx_line=1 led=0x00
+[7134955000 ns] btnR=1 tx_line=0 rx_line=0 led=0x00
+[7343275000 ns] btnR=1 tx_line=1 rx_line=1 led=0x00
+[7447435000 ns] btnR=1 tx_line=0 rx_line=0 led=0x00
+[7551595000 ns] btnR=1 tx_line=1 rx_line=1 led=0x00
+[7759915000 ns] btnR=1 tx_line=1 rx_line=1 led=0xa5
+[10300000000 ns] released btnR
+[10300000000 ns] btnR=0 tx_line=1 rx_line=1 led=0xa5
+[12300000000 ns] PASS  led=0xa5 matches sw=0xa5
+[12400000000 ns] pressing btnR
+[12400000000 ns] btnR=1 tx_line=1 rx_line=1 led=0xa5
+[13280395000 ns] btnR=1 tx_line=0 rx_line=0 led=0xa5
+[13592875000 ns] btnR=1 tx_line=1 rx_line=1 led=0xa5
+[14009515000 ns] btnR=1 tx_line=0 rx_line=0 led=0xa5
+[14217835000 ns] btnR=1 tx_line=1 rx_line=1 led=0xa5
+[14321995000 ns] btnR=1 tx_line=1 rx_line=1 led=0x3c
+[17400000000 ns] released btnR
+[17400000000 ns] btnR=0 tx_line=1 rx_line=1 led=0x3c
+[19400000000 ns] PASS  led=0x3c matches sw=0x3c
+[19500000000 ns] pressing btnR
+[19500000000 ns] btnR=1 tx_line=1 rx_line=1 led=0x3c
+[19842475000 ns] btnR=1 tx_line=0 rx_line=0 led=0x3c
+[19946635000 ns] btnR=1 tx_line=1 rx_line=1 led=0x3c
+[20884075000 ns] btnR=1 tx_line=1 rx_line=1 led=0xff
+[24500000000 ns] released btnR
+[24500000000 ns] btnR=0 tx_line=1 rx_line=1 led=0xff
+[26500000000 ns] PASS  led=0xff matches sw=0xff
+=== done ===
+$finish called at time : 26500 us : File "C:/Users/mahes/Downloads/project_2-20260426T223513Z-3-001/project_2/project_2.srcs/sim_1/new/top_tb.v" Line 114
+The simulator has terminated in an unexpected manner with exit code 1073807364.  Please review the simulation log (xsim.log) for details.

@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Webtalk v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Wed Apr 22 10:51:03 2026
+# Process ID: 13244
+# Current directory: C:/Users/Student/Desktop/Maheswari and Britney s26/lab1_m152b-master/lab1_m152b-master/project_2/project_2.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Users/Student/Desktop/Maheswari and Britney s26/lab1_m152b-master/lab1_m152b-master/project_2/project_2.sim/sim_1/behav/xsim/xsim.dir/top_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/Student/Desktop/Maheswari and Britney s26/lab1_m152b-master/lab1_m152b-master/project_2/project_2.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: C:/Users/Student/Desktop/Maheswari and Britney s26/lab1_m152b-master/lab1_m152b-master/project_2/project_2.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/Student/Desktop/Maheswari -notrace
+couldn't read file "C:/Users/Student/Desktop/Maheswari": permission denied
+INFO: [Common 17-206] Exiting Webtalk at Wed Apr 22 10:51:03 2026...
