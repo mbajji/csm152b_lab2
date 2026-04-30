@@ -98,8 +98,7 @@ module rx_tb;
 
 
   initial begin
-    $dumpfile("rx_tb.vcd");
-    $dumpvars(0, rx_tb);
+   
 
     baud_rate = 0;
     rst       = 0;
@@ -125,7 +124,7 @@ module rx_tb;
 
    
     // Test 3: invalid stop bit
-    // data must stay 0x3C - frame should be rejected
+   
     send_bad_stop_frame(8'h7E);
     #10;
 
@@ -138,15 +137,14 @@ module rx_tb;
  
 
     // Test 5: reset during receive
-    rx_line = 1'b0;          // start bit
+    rx_line = 1'b0;         
     @(posedge baud_rate);
-    rx_line = 1'b1;          // one data bit in
+    rx_line = 1'b1;          
     @(posedge baud_rate);
 
-    rst = 1;                 // reset mid-frame
+    rst = 1;               
     @(posedge baud_rate);
     rst = 0;
-    //rx_line = 1'b1;          // return to idle
     #10;
 
 
