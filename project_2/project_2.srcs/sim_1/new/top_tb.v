@@ -1,19 +1,5 @@
 `timescale 1ns / 1ps
-
-// Top-level UART loopback testbench.
-//
-// Mimics the board setup: jumper from tx_line (J1) to rx_line (L2) is modeled
-// by the `assign rx_line = tx_line` line below. Drives the reset and send
-// buttons exactly the way a human would, then checks that the LEDs end up
-// matching the switches.
-//
-// Heads up on timing:
-//   - clk is 100 MHz (10 ns period)
-//   - Baud rate is ~9600 (~104 us per bit), so a full byte takes ~1.04 ms
-//   - The debouncer divides clk by 2^17 (~1.31 ms per tick), so btnR must be
-//     held HIGH for at least ~3 ms to guarantee the rising edge is captured.
-//   - Total sim time is ~25 ms. Vivado xsim handles this in a few seconds.
-
+//INCORRECT was told need 2 diff tb's
 module top_tb();
 
     reg         clk  = 1'b0;
