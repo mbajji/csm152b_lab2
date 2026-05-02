@@ -86,9 +86,7 @@ module tx_tb();
       
         
         
-        data = 8'h0D;
-        baud_tick;
-        press_btn;
+        
 
         baud_tick;
            baud_tick;
@@ -160,7 +158,16 @@ module tx_tb();
         end
 
         baud_tick;
-        check_bit(1'b1, 9, "STOP");
+        
+        data = 8'hA5;
+        baud_tick;
+        press_btn;
+        repeat(9) baud_tick;
+        data = 8'h7f;
+        baud_tick;
+        press_btn;
+        repeat(9) baud_tick;
+        
 
       
     end
