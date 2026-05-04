@@ -46,21 +46,22 @@
 module rx(
     input wire baud_rate,       
     input wire rst,       
-    //input wire btn,       
+    //input wire btn,      
     input wire rx_line,
-    output reg busy = 1'b0,       
+    output reg busy = 1'b0,      
     output reg [7:0] data = 8'b0
 );
 
-    // State Encoding
+    // State encoding
     localparam IDLE_STATE  = 2'b00;
     localparam START_STATE = 2'b01;
     localparam DATA_STATE  = 2'b10;
     localparam STOP_STATE  = 2'b11;
-
+    
+    reg lsb = 1'b0;
     reg [1:0] curr_state = IDLE_STATE;
     reg [3:0] i = 3'b0; 
-    reg [7:0] cache = 8'b0;   
+    reg [7:0] cache = 8'b0;  
 
     always @(posedge baud_rate or posedge rst) begin
         if (rst) begin
@@ -75,14 +76,21 @@ module rx(
                 IDLE_STATE: begin
                     busy <= 1'b0;
                     if (rx_line == 1'b0) begin
-                        curr_state <= DATA_STATE;
-                        i <= 0;
+                        curr_state <= START_STATE;
                         busy <= 1'b1;
+                        i<=0;
                     end
+                end
+                START_STATE: begin
+                    lsb <= rx_line;
+                    i<=i+1;
+                    curr_state <= DATA_STATE;
                 end
 
                 DATA_STATE: begin
-                   
+                    if (i==1) begin 
+                        cache[0]<=lsb;
+                    end
                     cache[i] <= rx_line;
                     if (i == 7) begin
                         i <= 0;
