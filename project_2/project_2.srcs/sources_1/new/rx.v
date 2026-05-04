@@ -44,11 +44,11 @@
 
 
 module rx(
-    input wire baud_rate,       // This should be your baud rate clock
-    input wire rst,       // Reset signal [cite: 66, 91]
-    //input wire btn,       // "Send" button [cite: 89]
+    input wire baud_rate,       
+    input wire rst,       
+    //input wire btn,       
     input wire rx_line,
-    output reg busy = 1'b0,       // High when transmitting, low when IDLE
+    output reg busy = 1'b0,       
     output reg [7:0] data = 8'b0
 );
 
@@ -59,8 +59,8 @@ module rx(
     localparam STOP_STATE  = 2'b11;
 
     reg [1:0] curr_state = IDLE_STATE;
-    reg [3:0] i = 3'b0; // Tracks which of the 8 bits we are sending
-    reg [7:0] cache = 8'b0;   // Buffer to hold data during transmission
+    reg [3:0] i = 3'b0; 
+    reg [7:0] cache = 8'b0;   
 
     always @(posedge baud_rate or posedge rst) begin
         if (rst) begin
@@ -75,9 +75,6 @@ module rx(
                 IDLE_STATE: begin
                     busy <= 1'b0;
                     if (rx_line == 1'b0) begin
-                        // Start bit detected. Skip a separate START
-                        // validation cycle and go straight to sampling
-                        // so the data bits stay aligned with the wire.
                         curr_state <= DATA_STATE;
                         i <= 0;
                         busy <= 1'b1;
@@ -85,8 +82,7 @@ module rx(
                 end
 
                 DATA_STATE: begin
-                    // Shift bits into a private buffer so the LED output
-                    // only updates once the whole byte is in.
+                   
                     cache[i] <= rx_line;
                     if (i == 7) begin
                         i <= 0;
@@ -97,7 +93,7 @@ module rx(
                 end
 
                 STOP_STATE: begin
-                    data <= cache;   // latch full byte to LEDs
+                    data <= cache;   
                     curr_state <= IDLE_STATE;
                 end
 
