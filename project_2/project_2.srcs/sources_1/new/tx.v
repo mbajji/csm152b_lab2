@@ -58,7 +58,7 @@ module tx(
     output reg busy = 1'b0       
 );
 
-    // State Encoding
+    // State encoding
     localparam IDLE_STATE  = 2'b00;
     localparam START_STATE = 2'b01;
     localparam DATA_STATE  = 2'b10;
@@ -66,7 +66,7 @@ module tx(
 
     reg [1:0] curr_state = IDLE_STATE;
     reg [3:0] i = 0; 
-    reg [7:0] cache = 0;   // Buffer to hold data during transmission
+    reg [7:0] cache = 0;  
 
     always @(posedge baud_rate or posedge rst) begin
         if (rst) begin
@@ -80,20 +80,20 @@ module tx(
                     tx_line <= 1'b1;
                     busy <= 1'b0;
                     if (btn) begin
-                        cache <= data; // Capture switches into buffer 
+                        cache <= data; 
                         curr_state <= START_STATE;
                     end
                 end
 
                 START_STATE: begin
                     busy <= 1'b1;
-                    tx_line <= 1'b0; // Pull line LOW
+                    tx_line <= 1'b0; 
                     curr_state <= DATA_STATE;
                     i <= 0;
                 end
 
                 DATA_STATE: begin
-                    tx_line <= cache[i]; // Send LSB first 
+                    tx_line <= cache[i]; 
                     if (i == 7) begin
                         i <= 0;
                         curr_state <= STOP_STATE;
@@ -103,7 +103,7 @@ module tx(
                 end
 
                 STOP_STATE: begin
-                    tx_line <= 1'b1; // Pull line HIGH 
+                    tx_line <= 1'b1; 
                     curr_state <= IDLE_STATE;
                 end
 
