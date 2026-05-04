@@ -50,12 +50,12 @@
 //endmodule
 
 module tx(
-    input wire baud_rate,       // This should be your baud rate clock
-    input wire rst,       // Reset signal [cite: 66, 91]
-    input wire btn,       // "Send" button [cite: 89]
-    input wire [7:0] data, // Data from switches [cite: 88]
-    output reg tx_line = 1'b1,   // UART idle level is HIGH
-    output reg busy = 1'b0       // High when transmitting, low when IDLE
+    input wire baud_rate,       
+    input wire rst,       
+    input wire btn,       
+    input wire [7:0] data, 
+    output reg tx_line = 1'b1,   
+    output reg busy = 1'b0       
 );
 
     // State Encoding
@@ -65,13 +65,13 @@ module tx(
     localparam STOP_STATE  = 2'b11;
 
     reg [1:0] curr_state = IDLE_STATE;
-    reg [3:0] i = 0; // Tracks which of the 8 bits we are sending
+    reg [3:0] i = 0; 
     reg [7:0] cache = 0;   // Buffer to hold data during transmission
 
     always @(posedge baud_rate or posedge rst) begin
         if (rst) begin
             curr_state <= IDLE_STATE;
-            tx_line <= 1'b1; // Line high in IDLE [cite: 41]
+            tx_line <= 1'b1; 
             busy <= 1'b0;
             i <= 0;
         end else begin
@@ -80,20 +80,20 @@ module tx(
                     tx_line <= 1'b1;
                     busy <= 1'b0;
                     if (btn) begin
-                        cache <= data; // Capture switches into buffer [cite: 89]
+                        cache <= data; // Capture switches into buffer 
                         curr_state <= START_STATE;
                     end
                 end
 
                 START_STATE: begin
                     busy <= 1'b1;
-                    tx_line <= 1'b0; // Pull line LOW [cite: 26]
+                    tx_line <= 1'b0; // Pull line LOW
                     curr_state <= DATA_STATE;
                     i <= 0;
                 end
 
                 DATA_STATE: begin
-                    tx_line <= cache[i]; // Send LSB first [cite: 27]
+                    tx_line <= cache[i]; // Send LSB first 
                     if (i == 7) begin
                         i <= 0;
                         curr_state <= STOP_STATE;
@@ -103,7 +103,7 @@ module tx(
                 end
 
                 STOP_STATE: begin
-                    tx_line <= 1'b1; // Pull line HIGH [cite: 27]
+                    tx_line <= 1'b1; // Pull line HIGH 
                     curr_state <= IDLE_STATE;
                 end
 
